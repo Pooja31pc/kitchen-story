@@ -28,6 +28,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.cors().and().authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/admin/register").permitAll()
                 .antMatchers("/admin/login").permitAll()
+                .antMatchers("/user/**").permitAll()
                 .antMatchers("/swagger-ui.html").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers("/v2/api-docs").permitAll()

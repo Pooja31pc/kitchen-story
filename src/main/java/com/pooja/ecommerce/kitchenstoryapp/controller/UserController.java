@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -24,6 +24,14 @@ public class UserController {
 
     @Autowired
     private FoodRepository foodRepo;
+
+    @GetMapping("food")
+    public List<Food> getFood()
+    {
+        List<Food> food = (List<Food>) foodRepo.findAll();
+
+        return food;
+    }
 
     @Autowired
     private PaymentRepository payRepo;
@@ -126,6 +134,23 @@ public class UserController {
         }
         return "Error";
     }
+
+//    @GetMapping("getcart")
+//    public Cart getCart(@RequestParam("user_id")int userId){
+//        Optional<User> user = userRepo.findById(userId);
+//        if (user.isPresent()) {
+//            User userObj = user.get();
+//            List<Cart> carts = cartRepo.getUnorderedCartList(userObj);
+//            Cart cart;
+//            if (carts.size() < 1) {
+//                cart = cartRepo.save(new Cart(false, userObj));
+//            } else {
+//                cart = carts.get(0);
+//            }
+//            return cart;
+//        }
+//        return null;
+//    }
 
 
 }
